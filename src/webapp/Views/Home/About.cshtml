@@ -19,15 +19,15 @@
                 $.each(data, function (id, option) {
                     $('<li/>')
                         .addClass('list-group-item')
-                        .text(option.Name)
+                        .text(id+option.Name)
                         .appendTo(element);
                 });
             }
             $(document).ready(function () {
                 $("#listButton").bind("click", function (e) {
                     $.ajax({
-                        url: "/api/processes",
-                        data: "",
+                        url: "/api/processes/getproc",
+                        data:"",
                         type: "GET",
                         success: function (data) {
                             bindData($("#processList"), data);

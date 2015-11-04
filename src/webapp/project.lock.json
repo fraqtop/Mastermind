@@ -3,6 +3,19 @@
   "version": -9996,
   "targets": {
     "DNX,Version=v4.5.1": {
+      "EntityFramework/6.1.3": {
+        "frameworkAssemblies": [
+          "System.ComponentModel.DataAnnotations"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.dll": {},
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.dll": {},
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        }
+      },
       "EntityFramework.Commands/7.0.0-beta5": {
         "dependencies": {
           "EntityFramework.Relational.Design": "7.0.0-beta5",
@@ -130,6 +143,12 @@
         },
         "runtime": {
           "lib/net45/System.Interactive.Async.dll": {}
+        }
+      },
+      "jQuery/2.1.4": {},
+      "jQuery-vsdoc/2.1.0": {
+        "dependencies": {
+          "jQuery": "2.1.0"
         }
       },
       "Microsoft.AspNet.Authentication/1.0.0-beta5": {
@@ -1556,6 +1575,33 @@
     }
   },
   "libraries": {
+    "EntityFramework/6.1.3": {
+      "serviceable": true,
+      "sha512": "2xzFHAF3VVdmTR3//MygtQpwfbDjeaq+nQwCcokLzen7MKHOojPaxNPQPa4diHY1QtcR7zlHAJHNRqPB7W2Syw==",
+      "files": [
+        "EntityFramework.6.1.3.nupkg",
+        "EntityFramework.6.1.3.nupkg.sha512",
+        "EntityFramework.nuspec",
+        "content/App.config.transform",
+        "content/Web.config.transform",
+        "lib/net40/EntityFramework.dll",
+        "lib/net40/EntityFramework.SqlServer.dll",
+        "lib/net40/EntityFramework.SqlServer.xml",
+        "lib/net40/EntityFramework.xml",
+        "lib/net45/EntityFramework.dll",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.xml",
+        "tools/about_EntityFramework.help.txt",
+        "tools/EntityFramework.PowerShell.dll",
+        "tools/EntityFramework.PowerShell.Utility.dll",
+        "tools/EntityFramework.psd1",
+        "tools/EntityFramework.psm1",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/migrate.exe"
+      ]
+    },
     "EntityFramework.Commands/7.0.0-beta5": {
       "serviceable": true,
       "sha512": "TFfcJ6hVXY5XleybC/zAgcudMZXdHo34AjqRPdZLLH1RoCFZdqvGWLiE04tKKgJ0Mh8LcOgrzHLzKikpXBZ31A==",
@@ -1653,6 +1699,31 @@
         "lib/net45/System.Interactive.Async.XML",
         "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/System.Interactive.Async.dll",
         "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/System.Interactive.Async.XML"
+      ]
+    },
+    "jQuery/2.1.4": {
+      "sha512": "X8mRMt2HNI6kxYMWyQEcOumpAzEAs95DWSjM6FlX3DEVM5afuj8Abj0Y6i6H9wK7I7n3bJ0fnDA80OfKV19HQA==",
+      "files": [
+        "jQuery.2.1.4.nupkg",
+        "jQuery.2.1.4.nupkg.sha512",
+        "jQuery.nuspec",
+        "Content/Scripts/jquery-2.1.4-vsdoc.js",
+        "Content/Scripts/jquery-2.1.4.js",
+        "Content/Scripts/jquery-2.1.4.min.js",
+        "Content/Scripts/jquery-2.1.4.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-2.1.4.intellisense.js",
+        "Tools/uninstall.ps1"
+      ]
+    },
+    "jQuery-vsdoc/2.1.0": {
+      "sha512": "DS1WvcxuUq7EX682YOl9Pjw37ItPdGUBfIYZfQo+mjbdYjkLJKV4mAA7HU8siZvhLVZ4F32o4o8l9wbtRlsfsA==",
+      "files": [
+        "jQuery-vsdoc.2.1.0.nupkg",
+        "jQuery-vsdoc.2.1.0.nupkg.sha512",
+        "jQuery-vsdoc.nuspec",
+        "content/Scripts/jquery-2.1.0-vsdoc.js"
       ]
     },
     "Microsoft.AspNet.Authentication/1.0.0-beta5": {
@@ -2811,7 +2882,10 @@
       "Microsoft.Framework.Configuration.UserSecrets >= 1.0.0-beta5",
       "Microsoft.Framework.Logging >= 1.0.0-beta5",
       "Microsoft.Framework.Logging.Console >= 1.0.0-beta5",
-      "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-beta5"
+      "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-beta5",
+      "EntityFramework >= 6.1.3",
+      "jQuery >= 2.1.4",
+      "jQuery-vsdoc >= 2.1.0"
     ],
     "DNX,Version=v4.5.1": []
   }

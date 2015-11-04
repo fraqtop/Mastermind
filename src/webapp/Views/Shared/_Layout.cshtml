@@ -36,6 +36,7 @@
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-controller="Hello" asp-action="Index">Mastermind</a></li>
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
@@ -43,10 +44,6 @@
         </div>
         <div class="container body-content">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2015 - webapp</p>
-            </footer>
         </div>
 
         <environment names="Development">
