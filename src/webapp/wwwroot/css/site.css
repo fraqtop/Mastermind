@@ -127,6 +127,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', end
 body{
     background-image:url(../images/background_mm.jpg);
     background-size:auto;
+    background-attachment:fixed;
 }
 div{
     align-items:center;

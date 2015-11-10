@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using webapp.Models;
-
+using Newtonsoft.Json;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace webapp.Controllers
@@ -24,6 +24,11 @@ namespace webapp.Controllers
             ViewBag.mode = mode;
             md = mode;
             return View();
+        }
+        public string answer(string cols)
+        {
+            ColorsRow raw = JsonConvert.DeserializeObject<ColorsRow>(cols);
+            return raw.first;
         }
     }
 }

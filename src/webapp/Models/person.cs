@@ -12,7 +12,7 @@ namespace webapp.Models
         public person(string newname, int newage)
         {
             Name = newname;
-            age = newage + 20;
+            age = newage;
         }
     }
 }
