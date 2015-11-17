@@ -4,17 +4,18 @@
 }
 <h2> Hello, you are playing Mastermind on a @ViewBag.mode mode</h2>
 <br />
-
-@for (int i = 0; i < 4; i++)
-{
-    <div id=@i class="col-md-offset-1 col-md-1 ex"></div>
-}
-<div class="col-md-1 col-md-offset-1" style="height:100px">
-    <div class="vertbut">
-        <div id="kjh" class="btn btn-info">I'm sure its right</div>
+<div class="row" id="0" style="margin-top:50px">
+    <div class="col-md-1" id="leftarea"></div>
+    @for (int i = 1; i < 5; i++)
+    {
+        <div class="col-md-offset-1 col-md-1 ex"></div>
+    }
+    <div class="col-md-1 col-md-offset-1" style="height:100px">
+        <div class="vertbut">
+            <div id="submit" class="btn btn-info">I'm sure its right</div>
+        </div>
     </div>
 </div>
-
 <div id="modal_form">
     <!-- Сaмo oкнo -->
     <span id="modal_close">X</span> <!-- Кнoпкa зaкрыть -->
@@ -30,31 +31,46 @@
 {
     <script type="text/javascript">
         function changecolor(col, trg) {
-            $("#"+trg).css({
+            trg.css({
                 "background-color": col,
                 "box-shadow": "1px 1px 20px 12px " + col
             });
         };
+        function rgb2hex(orig) {
+            var rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+)/i);
+            return (rgb && rgb.length === 4) ? "#" +
+             ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+             ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+             ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : orig;
+        }
+
         var circle;
         $(document).ready(function () { // вся мaгия пoсле зaгрузки стрaницы
             var line = 0;
             $(".btn").bind("click", function (e) {
-                //line++;
+                line++;
+                var bodo = $("#" + (line - 1)).children(".ex");
                 var cols = {
-                    first: $("#" + line).css('background-color'), second: $("#" + (line + 1)).css('background-color'),
-                    third: $("#" + (line + 2)).css('background-color'), fourth: $("#" + (line + 3)).css('background-color')
+                    first: rgb2hex(bodo.eq(0).css('background-color')),
+                    second: rgb2hex(bodo.eq(1).css('background-color')),
+                    third: rgb2hex(bodo.eq(2).css('background-color')),
+                    fourth: rgb2hex(bodo.eq(3).css('background-color'))
                 };
                 $.ajax({
                     url: "/hello/answer",
                     data: "cols=" + JSON.stringify(cols),
                     type: "POST",
                     success: function (data) {
-                        alert(data);
+                        $("#" + (line - 1)).find(".btn").fadeOut("slow");
+                        var cl = $("#" + (line - 1)).clone(true);
+                        cl.attr("id", line);
+                        cl.fadeIn(700);
+                        cl.appendTo(".body-content");
                     }
                 });
             });
             $('.ex').click(function (event) { // лoвим клик пo ссылки с id="go"
-                window.circle = $(this).attr("id");
+                window.circle = $(this);
                 event.preventDefault(); // выключaем стaндaртную рoль элементa
                 $('#overlay').fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
                     function () { // пoсле выпoлнения предъидущей aнимaции

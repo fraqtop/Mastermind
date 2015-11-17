@@ -11,7 +11,7 @@ namespace webapp.Controllers
 {
     public class HelloController : Controller
     {
-        public string md { get; set; }
+        public static List<string> combination = new List<string>();
         [Route("[controller]/[action]")]
         // GET: /<controller>/
         public IActionResult Index()
@@ -20,15 +20,22 @@ namespace webapp.Controllers
         }
         public IActionResult Game(string mode)
         {
-            ViewBag.colours = new List<string>() { "green","black","red","pink","yellow" };
+            var palette = new List<string>() { "#000000", "#FE2E2E", "#58FA58", "#2E64FE",
+                                            "#F7FE2E", "#FA58AC", "#848484", "#FE9A2E" };
+            Random rnd = new Random();
+            combination.Clear();
+            for (int i = 0; i < 4; i++)
+            {
+                combination.Add(palette[rnd.Next(0, 7)]);
+            }
+            ViewBag.colours = palette;
             ViewBag.mode = mode;
-            md = mode;
             return View();
         }
-        public string answer(string cols)
+        public int[] answer(string cols)
         {
             ColorsRow raw = JsonConvert.DeserializeObject<ColorsRow>(cols);
-            return raw.first;
+            return raw.overlap(combination);
         }
     }
 }

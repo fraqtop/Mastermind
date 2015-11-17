@@ -14,7 +14,17 @@ namespace webapp.Models
 
         public int[] overlap(List<string> comb)
         {
-            return new int[2];
+            int[] answer = new int[2];
+            List<string> row = new List<string>() { first, second, third, fourth };
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (comb[i].ToLower() == row[j] && i == j) answer[1]++;
+                    if (comb[i].ToLower() == row[j]) answer[0]++;
+                }
+            }
+            return answer;
         }
     }
 }
