@@ -57,10 +57,28 @@ background-color:rgba(16, 15, 15, 0.67)
 
 
 
-div.vertbut{
+#rightarea{
     padding-top:30px;
+    font-size:30px;
+    color:green;
 }
 
+#leftarea{
+    font-size:30px;
+    color:black;
+    padding-top:30px;
+    text-align:right;
+}
+
+#submit{
+    margin-top:40px;
+}
+
+img{
+    width:250px;
+    height:250px;
+    opacity:0.4;
+}
 
 #modal_form {
 	width: 300px; 

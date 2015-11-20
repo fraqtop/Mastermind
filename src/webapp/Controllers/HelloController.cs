@@ -24,10 +24,22 @@ namespace webapp.Controllers
                                             "#F7FE2E", "#FA58AC", "#848484", "#FE9A2E" };
             Random rnd = new Random();
             combination.Clear();
-            for (int i = 0; i < 4; i++)
+            if (mode=="Hard")
+                for (int i = 0; i < 4; i++)
+                {
+                    combination.Add(palette[rnd.Next(0, 7)]);
+                }
+            else
             {
-                combination.Add(palette[rnd.Next(0, 7)]);
+                for (int i = 0; i < 4; i++)
+                {
+                    int r = rnd.Next(0, palette.Capacity - i);
+                    combination.Add(palette[r]);
+                    palette.RemoveAt(r);
+                }
+                palette.AddRange(combination);
             }
+            palette = palette.OrderBy(x => rnd.Next(0, 7)).ToList();
             ViewBag.colours = palette;
             ViewBag.mode = mode;
             return View();
