@@ -37,6 +37,10 @@ h2{
     text-align:center;
 }
 
+h3{
+    text-indent:20px;
+}
+
 .ex
 {
 	width: 100px;
@@ -74,7 +78,7 @@ background-color:rgba(16, 15, 15, 0.67)
     margin-top:40px;
 }
 
-img{
+img.res{
     width:250px;
     height:250px;
     opacity:0.4;

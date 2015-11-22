@@ -4,37 +4,54 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using webapp.Models;
+using Newtonsoft.Json;
+// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace webapp.Controllers
 {
     public class HomeController : Controller
     {
+        public static List<string> combination = new List<string>();
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult About()
+        [Route("[action]")]
+        public IActionResult Game(string mode)
         {
-            string appName = "My fst ASP app";
-            ViewBag.Message = "ASP.NET 5 Rocks!"+appName;
-            var serverinfo = new ServerinfoViewModel()
+            var palette = new List<string>() { "#000000", "#FE2E2E", "#58FA58", "#2E64FE",
+                                            "#F7FE2E", "#FA58AC", "#848484", "#FE9A2E" };
+            Random rnd = new Random();
+            combination.Clear();
+            if (mode=="Hard")
+                for (int i = 0; i < 4; i++)
+                {
+                    combination.Add(palette[rnd.Next(0, 7)]);
+                }
+            else
             {
-                Name = Environment.MachineName,
-                Software = Environment.OSVersion.ToString()
-            };
-            return View(serverinfo);
-        }
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
+                for (int i = 0; i < 4; i++)
+                {
+                    int r = rnd.Next(0, palette.Capacity - i);
+                    combination.Add(palette[r]);
+                    palette.RemoveAt(r);
+                }
+                palette.AddRange(combination);
+            }
+            palette = palette.OrderBy(x => rnd.Next(0, 7)).ToList();
+            ViewBag.colours = palette;
+            ViewBag.mode = mode;
             return View();
         }
-
-        public IActionResult Error()
+        public int[] answer(string cols)
         {
-            return View("~/Views/Shared/Error.cshtml");
+            ColorsRow raw = JsonConvert.DeserializeObject<ColorsRow>(cols);
+            return raw.overlap(combination);
+        }
+        [Route("[action]")]
+        public IActionResult Rules()
+        {
+            return View();
         }
     }
 }
