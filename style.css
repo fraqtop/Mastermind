@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Oswald');
+
+@keyframes title_fadein{
+    from{ opacity: 0 }
+    to{ opacity: 1 }
+}
+
+body{
+    background: fixed url('background_mm.jpg');
+    margin: 0;
+    padding: 0;
+}
+
+.represent{
+    display: flex;
+    height: 100%;
+    background: black;
+    align-items: center;
+    justify-content: center;
+}
+
+.represent>div{
+    text-align: center;
+}
+
+img:first-of-type{
+    align-self: flex-start;
+}
+
+#title{
+    color: navajowhite;
+    font-size: 60Px;
+    font-family: 'Montserrat';
+    opacity: 0;
+    animation-name: title_fadein;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+#mastermind{
+    font-size: 80Px;
+    font-family: 'Oswald';
+    color: darkred;
+    opacity: 0;
+    animation-name: title_fadein;
+    animation-duration: 3s;
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+}
+
+.content{
+    height: 100%;
+    background: white;
+}
