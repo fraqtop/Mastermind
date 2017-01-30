@@ -10,6 +10,7 @@ body{
     background: fixed url('background_mm.jpg');
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .represent{
@@ -20,14 +21,11 @@ body{
     justify-content: center;
 }
 
-.represent>div{
-    text-align: center;
-}
 
 img:first-of-type{
     margin-left: 10%;
-    width: 25%;
-    height: 30%;
+    width: 300Px;
+    height: 300Px;
 }
 
 #title{
@@ -60,7 +58,6 @@ img:first-of-type{
 }
 .content>div{
     width: 30%;
-    text-align: center;
     font-size: 30Px;
 }
 a{
@@ -69,9 +66,42 @@ a{
 }
 .button{
     border: 3Px solid black;
-    transition: box-shadow 0.5s;
+    transition: box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .button:hover{
     box-shadow:2px 2px 10px 2px #191919;
+}
+
+.circle{
+    width: 150px;
+    height: 150px;
+    background-color: lightgray;
+    border-radius: 100%;
+    box-shadow: 0 0 10Px 10Px lightgray; 
+}
+.row{
+    margin: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.panel{
+    top: 0%;
+    position: fixed;
+    display: flex;
+    height: 15%;
+    width: 100%;
+    flex-direction: row;
+}
+.panel>div{
+    background: black;
+    border: 2Px solid lightgrey;
+    border-bottom: none;
+    flex: 1;
+    opacity: 0.6;
+    color: navajowhite;
 }
