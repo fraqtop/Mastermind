@@ -20,7 +20,7 @@ class Mastermind
     }
 
     countPoints(user_colors){
-        let [a, b, c, d] = user_colors
+        let attempt_points = 0
         for (let i = 0; i<4; i++)
         {
             switch(this.combs.indexOf(user_colors[i]))
@@ -28,20 +28,40 @@ class Mastermind
                 case -1:
                     break;
                 case i:
-                    this.points += 4
+                    attempt_points += 3
                     break;
                 default:
-                    this.points += 1
+                    attempt_points += 1
             }
         }
-        alert(this.points)
+        this.points += attempt_points
         alert(this.combs)
+        return attempt_points
     }
 
     getRandom(){
         let min = 0
         let max = this.cols.length-1
         return Math.floor(Math.random()*(max - min +1) + min)
+    }
+
+    getClone(){
+        return this.row_pattern.cloneNode(true)
+    }
+
+    check_for_win(attempt_points){
+        if (this.mode == 'hard')
+        {
+            if (attempt_points == 12 & window.attempt<=10)
+            { return true }
+            return false
+        }
+        if (this.mode == 'default')
+        {
+            if (attempt_points == 16 & window.attempt<=12)
+            { return true }
+            return false
+        }
     }
 
     constructor(new_mode)
@@ -53,6 +73,7 @@ class Mastermind
         this.index = -1
         if (new_mode=='hard') {this.cols.push('cadetblue')}
         this.generateCombination()
+        this.row_pattern = document.querySelector("#row_1").cloneNode(true)
     }
 }
 
@@ -63,22 +84,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
     if (mode!=-1)
     {
         window.mastermind = new Mastermind(location.href.substr(mode+5))
+        submit.onclick = ()=>{
+            let chosen_colors = getColors()
+            let attempt_points = window.mastermind.countPoints(chosen_colors)
+            if (window.mastermind.check_for_win(attempt_points))
+            {submit.style.display = "none"}
+            window.attempt++
+            attempt.innerHTML = window.attempt
+            points.innerHTML = window.mastermind.points
+            draw()
+        };
     }
-    submit.onclick = ()=>{
-        let chosen_colors = getColors()
-        window.mastermind.countPoints(chosen_colors)
-        window.attempt++
-    };
-    let circles = document.querySelectorAll(".circle")
-    for (c of circles)
-    {
-        c.onclick = function(){
-        let current_color = window.mastermind.getNextColor('default')
-        alert(current_color)
-    };
-    }
-    
 });
+
+function changeColor(DOMobject){
+    let old_color = DOMobject.className.substr(7)
+    let new_color = window.mastermind.getNextColor(old_color)
+    DOMobject.className = `circle ${new_color}`
+}
 
 function getColors(){
     let row = document.querySelector('#row_' + window.attempt)
@@ -91,5 +114,7 @@ function getColors(){
 }
 
 function draw(){
-
+    let new_line = window.mastermind.getClone()
+    new_line.id = "row_" + window.attempt
+    document.body.insertBefore(new_line, submit)
 }

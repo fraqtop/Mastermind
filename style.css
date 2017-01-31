@@ -115,9 +115,12 @@ a{
     background-color: sandybrown;
     box-shadow: 0 0 10Px 10Px sandybrown;
 }
-
+.cadetblue{
+    background-color: cadetblue;
+    box-shadow: 0 0 10Px 10Px cadetblue;
+}
 .row{
-    margin: 10%;
+    margin: 15%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
