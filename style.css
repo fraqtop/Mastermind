@@ -77,10 +77,45 @@ a{
 .circle{
     width: 150px;
     height: 150px;
-    background-color: lightgray;
     border-radius: 100%;
-    box-shadow: 0 0 10Px 10Px lightgray; 
 }
+.default{
+    background-color: lightgray;
+    box-shadow: 0 0 10Px 10Px lightgray;
+}
+.red{
+    background-color: red;
+    box-shadow: 0 0 10Px 10Px red;
+}
+.blue{
+    background-color: blue;
+    box-shadow: 0 0 10Px 10Px blue;
+}
+.green{
+    background-color: lightgreen;
+    box-shadow: 0 0 10Px 10Px lightgreen;
+}
+.yellow{
+    background-color: yellow;
+    box-shadow: 0 0 10Px 10Px yellow;
+}
+.black{
+    background-color: black;
+    box-shadow: 0 0 10Px 10Px black;
+}
+.orange{
+    background-color: orange;
+    box-shadow: 0 0 10Px 10Px orange;
+}
+.purple{
+    background-color: mediumpurple;
+    box-shadow: 0 0 10Px 10Px mediumpurple;
+}
+.brown{
+    background-color: sandybrown;
+    box-shadow: 0 0 10Px 10Px sandybrown;
+}
+
 .row{
     margin: 10%;
     display: flex;
