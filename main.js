@@ -9,12 +9,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
         submit.onclick = ()=>{
             let chosen_colors = getColors()
             let attempt_points = window.mastermind.countPoints(chosen_colors)
+            points.innerHTML = window.mastermind.points
             if (window.mastermind.checkForWin(attempt_points))
             {submit.style.display = "none"}
-            window.attempt++
-            attempt.innerHTML = window.attempt
-            points.innerHTML = window.mastermind.points
-            draw()
+            else
+            {
+                window.attempt++
+                document.querySelector("#attempt").innerHTML = window.attempt
+                draw()
+            }
         };
     }
 });
@@ -39,4 +42,9 @@ function draw(){
     let new_line = window.mastermind.getClone()
     new_line.id = "row_" + window.attempt
     document.body.insertBefore(new_line, submit)
+}
+
+function tickTimer(){
+    window.mastermind.secondsElapsed++
+    time.innerHTML = window.mastermind.secondsElapsed
 }
