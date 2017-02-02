@@ -44,7 +44,7 @@ class Mastermind
         return this.row_pattern.cloneNode(true)
     }
 
-    check_for_win(attempt_points){
+    checkForWin(attempt_points){
         if (this.mode == 'hard')
         {
             if (attempt_points == 12 & window.attempt<=10)

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         submit.onclick = ()=>{
             let chosen_colors = getColors()
             let attempt_points = window.mastermind.countPoints(chosen_colors)
-            if (window.mastermind.check_for_win(attempt_points))
+            if (window.mastermind.checkForWin(attempt_points))
             {submit.style.display = "none"}
             window.attempt++
             attempt.innerHTML = window.attempt
