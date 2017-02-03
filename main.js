@@ -7,11 +7,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
     {
         window.mastermind = new Mastermind(location.href.substr(mode+5), colors)
         submit.onclick = ()=>{
+            if (window.attempt == 1)
+            {
+                window.seconds_elapsed = 0
+                window.timer_id = setInterval(tickTimer, 1000)
+            }
             let chosen_colors = getColors()
             let attempt_points = window.mastermind.countPoints(chosen_colors)
             points.innerHTML = window.mastermind.points
             if (window.mastermind.checkForWin(attempt_points))
-            {submit.style.display = "none"}
+            {
+                clearInterval(window.timer_id)
+                submit.style.display = "none"
+            }
+            
             else
             {
                 window.attempt++
@@ -45,6 +54,6 @@ function draw(){
 }
 
 function tickTimer(){
-    window.mastermind.secondsElapsed++
-    time.innerHTML = window.mastermind.secondsElapsed
+    window.seconds_elapsed++
+    time.innerHTML = window.seconds_elapsed
 }

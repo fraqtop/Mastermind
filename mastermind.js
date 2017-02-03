@@ -1,9 +1,10 @@
 class Mastermind
 {
     getNextColor(prev_color){
-        this.index = this.cols.indexOf(prev_color)
-        this.index = this.index >= this.cols.length-1 ? 0: this.index + 1
-        let next_color = this.cols[this.index]
+        let color_index
+        color_index = this.cols.indexOf(prev_color)
+        color_index = color_index >= this.cols.length-1 ? 0: color_index + 1
+        let next_color = this.cols[color_index]
         return next_color
     }
 
@@ -15,6 +16,20 @@ class Mastermind
                 this.combs.push(this.cols[this.getRandom()])
             } 
         }
+        else
+        {
+            let used_colors = []
+            let random_value = this.getRandom()
+            for (let i=0; i<4; i++)
+            {
+                while(used_colors.indexOf(random_value) != -1)
+                {
+                    random_value = this.getRandom()
+                }
+                used_colors.push(random_value)
+                this.combs.push(this.cols[random_value])
+            }
+        }
     }
 
     countPoints(user_colors){
@@ -25,12 +40,12 @@ class Mastermind
             index = -1
             do{
                 index = this.combs.indexOf(user_colors[i], index+1)
-                attempt_points[index] += index == i ? 3: 1
+                attempt_points[index] += index == i ? this.pointsForRightPlace: 1
             } while (index != -1)
         }
         attempt_points = attempt_points.map(function(elem){
-            return elem>3 ? 3: elem
-        });
+            return elem>this.pointsForRightPlace ? this.pointsForRightPlace: elem
+        }, this);
         let result = attempt_points.reduce((prev, next)=>prev + next)
         this.points += result
         alert(this.combs)
@@ -49,28 +64,20 @@ class Mastermind
     }
 
     checkForWin(attempt_points){
-        if (this.mode == 'hard')
+        if (attempt_points == this.pointsForRightPlace*4)
         {
-            if (attempt_points == 12 & window.attempt<=10)
-            { return true }
-            return false
+            return true
         }
-        if (this.mode == 'default')
-        {
-            if (attempt_points == 16 & window.attempt<=12)
-            { return true }
-            return false
-        }
+        return false
     }
 
     constructor(new_mode, colors)
     {
-        this.secondsElapsed = 0
         this.points = 0
         this.mode = new_mode
         this.cols = colors
         this.combs = []
-        this.index = -1
+        this.pointsForRightPlace = this.mode == "hard" ? 3 : 4
         if (new_mode=='hard') {this.cols.push('cadetblue')}
         this.generateCombination()
         this.row_pattern = document.querySelector("#row_1").cloneNode(true)
