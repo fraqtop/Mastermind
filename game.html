@@ -2,11 +2,19 @@
     <head>
         <meta charset="utf-8">
         <title>mastermind session</title>
-        <script src="mastermind.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" href="style.css">
+        <script src="static/mastermind.js"></script>
+        <script src="static/main.js"></script>
+        <link rel="stylesheet" href="static/style.css">
     </head>
     <body>
+        <div id="overlay"> </div>
+        <div id="modal">
+            <span> </span>
+            <form action="highscore.php" method="POST">
+                <input type="text" placeholder="your name" name="player_name">
+                <input type="submit" value="save record">
+            </form> 
+        </div>
         <div class="panel">
             <div>
                 <h2>summary points</h2>
@@ -22,6 +30,7 @@
             </div>
         </div>
         <div class="row" id="row_1">
+            <div class="points"></div>
             <div class="circle default" onclick="changeColor(this)"></div>
             <div class="circle default" onclick="changeColor(this)"></div>
             <div class="circle default" onclick="changeColor(this)"></div>

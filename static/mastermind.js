@@ -44,12 +44,14 @@ class Mastermind
             } while (index != -1)
         }
         attempt_points = attempt_points.map(function(elem){
-            return elem>this.pointsForRightPlace ? this.pointsForRightPlace: elem
+            if (elem != 0)
+            {
+                return elem>=this.pointsForRightPlace ? this.pointsForRightPlace: 1
+            }
+            return elem
         }, this);
         let result = attempt_points.reduce((prev, next)=>prev + next)
         this.points += result
-        alert(this.combs)
-        alert(attempt_points)
         return result
     }
 
@@ -69,6 +71,10 @@ class Mastermind
             return true
         }
         return false
+    }
+
+    getResult(attempt, time){
+        return this.points * Math.pow(attempt, 2) * time
     }
 
     constructor(new_mode, colors)

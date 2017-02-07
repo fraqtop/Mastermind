@@ -7,7 +7,7 @@
 
 body{
     font-family: 'Montserrat';
-    background: fixed url('background_mm.jpg');
+    background: fixed url('../img/background_mm.jpg');
     margin: 0;
     padding: 0;
     text-align: center;
@@ -142,4 +142,41 @@ a{
     flex: 1;
     opacity: 0.6;
     color: navajowhite;
+}
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: darkgrey;
+    opacity: 0;
+    z-index: 2;
+    transition: all 2s;
+    height: 0;
+    overflow: hidden;
+}
+#overlay.active{
+    height: 100%;
+    opacity: 0.8;
+}
+#modal{
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background: lightyellow;
+    display: none;
+    width: 20%;
+    height: 20%;
+    z-index: 5;
+    border: 2Px solid black;
+    border-radius: 5Px;
+    box-shadow: 0 0 4Px 4Px black;
+    padding-top: 40Px;
+}
+
+span{
+    display: block;
+    margin-top: 20Px;
+    margin-bottom: 5Px;
 }
