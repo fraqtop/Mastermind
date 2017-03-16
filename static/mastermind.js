@@ -48,8 +48,19 @@ class Mastermind
             }
             return elem;
         }, this);
-        let result = attempt_points.reduce((prev, next)=>prev + next);
-        this.points += result;
+        let result = [0, 0];
+        for (let cell of attempt_points)
+        {
+            if (cell!=0)
+            {
+                result[0]++;
+                if (cell == this.pointsForRightPlace)
+                {
+                    result[1]++;
+                }
+            }
+        }
+        this.points += attempt_points.reduce((prev, next)=>prev + next);
         return result;
     }
 
@@ -64,7 +75,7 @@ class Mastermind
     }
 
     checkForWin(attempt_points){
-        if (attempt_points == this.pointsForRightPlace*4)
+        if (attempt_points[1] == 4)
         {
             return true;
         }

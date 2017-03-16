@@ -3,9 +3,9 @@ declare (strict_types = 1);
 
 class Database{
     private $host = "localhost";
-    private $db_name = "bd";
-    private $login = "login";
-    private $pass = "password";
+    private $db_name = "db";
+    private $login = "secure";
+    private $pass = "secure";
     private $context;
     public function connect()
     {
@@ -14,17 +14,17 @@ class Database{
     }
     public function getHighscores()
     {
-        $result = $this->context->query("select name, points from Record order by points ASC LIMIT 5");
+        $result = $this->context->query("select name, points from Record order by points ASC LIMIT 10");
         return $result->fetchAll();
     }
     public function checkForRecord($result)
     {
         $records = $this->getHighscores();
-        if (count($records)<5)
+        if (count($records)<10)
         {
             return true;
         }
-        return $records[4]['points'] > $result;
+        return $records[count($records-1)]['points'] > $result;
     }
     public function setRecord(string $name, int $points)
     {
