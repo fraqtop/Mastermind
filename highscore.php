@@ -1,6 +1,6 @@
 <?php
 require_once('database.php');
-$db_context = new Database();
+$db_context = Database::getInstance();
 $db_context->connect();
 if (isset($_GET['score']))
 {

@@ -2,11 +2,22 @@
 declare (strict_types = 1);
 
 class Database{
+    private static $instance;
     private $host = "localhost";
-    private $db_name = "db";
+    private $db_name = "secure";
     private $login = "secure";
     private $pass = "secure";
     private $context;
+    public static function getInstance():Database
+    {
+        if (self::$instance == null)
+        {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+    private function __construct(){}
+
     public function connect()
     {
         $dsn = "mysql:host=$this->host;dbname=$this->db_name";
